@@ -1,10 +1,9 @@
-*This project has been created as part of the 42 curriculum by \<aziati\>.*
 
 # Get Next Line — 1337 / 42 Learning Guide
 
 > **Source of truth:** Official **Get Next Line**, version **14.3**, Chapters I–VII, supplied with this project. This README is a learning companion and an implementation plan, **not** a replacement for the official subject. Statements marked **[Official]** are grounded in that subject; statements marked **[Recommended]** are learning strategies or design suggestions, not additional grading rules.
 >
-> **Before submission:** Verify that `aziati` in the first line is your exact 42 login, and update the **AI Use Disclosure** to accurately describe your actual workflow.
+> **Before submission:** Verify that in the first line is your exact 42 login, and update the **AI Use Disclosure** to accurately describe your actual workflow.
 
 ## Table of Contents
 
