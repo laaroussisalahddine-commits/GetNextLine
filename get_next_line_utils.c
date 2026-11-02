@@ -6,23 +6,11 @@
 /*   By: slaarous <slaarous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 19:38:53 by slaarous          #+#    #+#             */
-/*   Updated: 2026/10/31 22:05:31 by slaarous         ###   ########.fr       */
+/*   Updated: 2026/11/01 17:34:33 by slaarous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-char	*get_strchr(char *str, int c)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] != c)
-		i++;
-	if (str[i] == c)
-		return (&str[i]);
-	return (NULL);
-}
 
 int		get_strlen(char *str)
 {
@@ -37,10 +25,10 @@ int		get_strlen(char *str)
 void	*get_calloc(size_t nmemb, size_t size)
 {
 	size_t	total;
-	void	*s;
-	int		i;
+	char	*s;
+	size_t	i;
 
-	if (size != 0 && nmemb > SIZE_MAX / size)
+	if (size != 0 && nmemb > (size_t) - 1 / size)
 		return (NULL);
 	total = nmemb * size;
 	s = malloc(total);
@@ -48,35 +36,34 @@ void	*get_calloc(size_t nmemb, size_t size)
 		return (NULL);
 	i = 0;
 	while (i < nmemb)
-	{
-		(char *)s[i] = 0;
-		i++;
-	}
+		s[i++] = 0;
 	return (s);
 }
 
 char	*get_join(char *stash, char *buffer)
 {
-	char	*new;
+	char	*new_string;
 	int		i;
 	int		j;
 
 	if (!stash)
 	{
-		stash = ft_calloc(1);
+		stash = get_calloc(1, 1);
 		if (!stash)
-			return (NULL);
+			return (free(buffer), NULL);
 	}
-	new = (char *)malloc(get_strlen(stash) + get_strlen(buffer) + 1)
-	if (!new)
+	new_string = (char *)malloc(get_strlen(stash) + get_strlen(buffer) + 1);
+	if (!new_string)
 		return (NULL);
-	i = -1;
-	while (stash[++i])
-		new[i] = stash[i];
+	i = 0;
+	while (stash[i])
+	{
+		new_string[i] = stash[i];
+		i++;
+	}	
 	j = 0;
 	while (buffer[j])
-		new[i++] = buffer[j++];
-	new[i] = '\0';
-	free(stash);
-	return (new);
+		new_string[i++] = buffer[j++];
+	new_string[i] = '\0';
+	return (free(stash), free(buffer),new_string);
 }
