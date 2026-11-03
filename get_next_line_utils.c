@@ -6,7 +6,7 @@
 /*   By: slaarous <slaarous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 19:38:53 by slaarous          #+#    #+#             */
-/*   Updated: 2026/11/01 17:34:33 by slaarous         ###   ########.fr       */
+/*   Updated: 2026/11/02 19:33:46 by slaarous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,33 @@ int		get_strlen(char *str)
 		i++;
 	return (i);
 }
-
-void	*get_calloc(size_t nmemb, size_t size)
+char	*get_alloc(void)
 {
-	size_t	total;
 	char	*s;
-	size_t	i;
 
-	if (size != 0 && nmemb > (size_t) - 1 / size)
-		return (NULL);
-	total = nmemb * size;
-	s = malloc(total);
+	s = malloc(1);
 	if (!s)
 		return (NULL);
-	i = 0;
-	while (i < nmemb)
-		s[i++] = 0;
+	s[0] = 0;
 	return (s);
+}
+
+char	*copy_new_stash(char *stash, int pos, int count)
+{
+	char	*new_stash; 
+	int		j;
+
+	new_stash = (char *)malloc(count + 1);
+	if (!new_stash)
+		return (NULL);
+	j = 0;
+	while (j < count && stash[pos + j])
+	{
+		new_stash[j] = stash[pos + j];
+		j++;
+	}
+	new_stash[j] = 0;
+	return (new_stash);
 }
 
 char	*get_join(char *stash, char *buffer)
@@ -48,22 +58,22 @@ char	*get_join(char *stash, char *buffer)
 
 	if (!stash)
 	{
-		stash = get_calloc(1, 1);
+		stash = get_alloc();
 		if (!stash)
-			return (free(buffer), NULL);
+			return (free(buffer), free(stash), NULL);
 	}
 	new_string = (char *)malloc(get_strlen(stash) + get_strlen(buffer) + 1);
 	if (!new_string)
-		return (NULL);
+		return (free(buffer), NULL);
 	i = 0;
-	while (stash[i])
+	while (stash[i]) 
 	{
 		new_string[i] = stash[i];
 		i++;
-	}	
+	}
 	j = 0;
 	while (buffer[j])
 		new_string[i++] = buffer[j++];
 	new_string[i] = '\0';
-	return (free(stash), free(buffer),new_string);
+	return (free(stash), free(buffer), new_string);
 }

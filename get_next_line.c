@@ -6,7 +6,7 @@
 /*   By: slaarous <slaarous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 19:35:31 by slaarous          #+#    #+#             */
-/*   Updated: 2026/11/01 17:39:58 by slaarous         ###   ########.fr       */
+/*   Updated: 2026/11/02 19:41:00 by slaarous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,13 @@ char	*update_stash(char *stash, char **line)
 	j = 0;
 	while (stash[i + j])
 		j++;
-	new_stash = malloc(sizeof(char) * (j + 1));
+	new_stash = copy_new_stash(stash, i, j);
 	if (!new_stash)
-	{	
+	{
 		free(*line);
-		line = NULL;
+		*line = NULL;
 		return (free(stash), NULL);
 	}
-	j = -1;
-	while (stash[i + ++j])
-		new_stash[j] = stash[i + j];
-	new_stash[j] = '\0';
 	free(stash);
 	return (new_stash);
 }
@@ -95,7 +91,7 @@ char	*get_next_line(int fd)
 	char		*stock;
 	char		*line;
 	
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	stock = read_file(stash, fd);
 	if (!stock)
