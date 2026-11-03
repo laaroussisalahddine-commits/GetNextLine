@@ -6,7 +6,7 @@
 /*   By: slaarous <slaarous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 19:38:53 by slaarous          #+#    #+#             */
-/*   Updated: 2026/11/03 20:51:00 by slaarous         ###   ########.fr       */
+/*   Updated: 2026/11/03 21:42:44 by slaarous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		get_search(char	*str, int c)
 {
-	int	i;
+	size_t	i;
 
 	if (!str)
 		return (0);
@@ -26,9 +26,9 @@ int		get_search(char	*str, int c)
 	return (0);	
 }
 
-int		get_strlen(char *str)
+size_t		get_strlen(char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])
@@ -46,10 +46,10 @@ char	*get_alloc(void)
 	return (s);
 }
 
-char	*copy_new_stash(char *stash, int pos, int count)
+char	*copy_new_stash(char *stash, size_t pos, size_t count)
 {
 	char	*new_stash; 
-	int		j;
+	size_t		j;
 
 	new_stash = (char *)malloc(count + 1);
 	if (!new_stash)
@@ -67,8 +67,8 @@ char	*copy_new_stash(char *stash, int pos, int count)
 char	*get_join(char *stash, char *buffer)
 {
 	char	*new_string;
-	int		i;
-	int		j;
+	size_t		i;
+	size_t		j;
 
 	if (!stash)
 	{
