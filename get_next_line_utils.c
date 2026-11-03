@@ -6,11 +6,25 @@
 /*   By: slaarous <slaarous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 19:38:53 by slaarous          #+#    #+#             */
-/*   Updated: 2026/11/02 19:33:46 by slaarous         ###   ########.fr       */
+/*   Updated: 2026/11/03 20:51:00 by slaarous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int		get_search(char	*str, int c)
+{
+	int	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	if (str[i] == c)
+		return (1);
+	return (0);	
+}
 
 int		get_strlen(char *str)
 {

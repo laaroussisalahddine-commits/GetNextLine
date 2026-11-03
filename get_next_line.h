@@ -6,7 +6,7 @@
 /*   By: slaarous <slaarous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 19:39:16 by slaarous          #+#    #+#             */
-/*   Updated: 2026/11/02 17:42:15 by slaarous         ###   ########.fr       */
+/*   Updated: 2026/11/03 20:54:18 by slaarous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
-
+int		get_search(char	*str, int c);
 char	*get_strchr(char *str, int c);
 int		get_strlen(char *str);
 char	*get_alloc(void);
