@@ -6,7 +6,7 @@
 /*   By: slaarous <slaarous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 19:35:31 by slaarous          #+#    #+#             */
-/*   Updated: 2026/11/03 21:51:07 by slaarous         ###   ########.fr       */
+/*   Updated: 2026/11/04 13:52:56 by slaarous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*read_file(char *stash, int fd)
 	byte = 1;
 	while(byte != 0)
 	{
-		buffer = malloc(BUFFER_SIZE + (size_t)1);
+		buffer = malloc(BUFFER_SIZE + (size_t)1); //search of why size_t cast;
 		if (!buffer)
 			return (NULL);
 		byte = read(fd, buffer, BUFFER_SIZE);
