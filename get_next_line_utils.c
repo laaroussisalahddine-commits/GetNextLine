@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-int		get_search(char	*str, int c)
+int	get_search(char	*str, int c)
 {
 	size_t	i;
 
@@ -23,10 +23,10 @@ int		get_search(char	*str, int c)
 		i++;
 	if (str[i] == c)
 		return (1);
-	return (0);	
+	return (0);
 }
 
-size_t		get_strlen(char *str)
+size_t	get_strlen(char *str)
 {
 	size_t	i;
 
@@ -35,6 +35,7 @@ size_t		get_strlen(char *str)
 		i++;
 	return (i);
 }
+
 char	*get_alloc(void)
 {
 	char	*s;
@@ -48,7 +49,7 @@ char	*get_alloc(void)
 
 char	*copy_new_stash(char *stash, size_t pos, size_t count)
 {
-	char	*new_stash; 
+	char		*new_stash;
 	size_t		j;
 
 	new_stash = (char *)malloc(count + 1);
@@ -66,7 +67,7 @@ char	*copy_new_stash(char *stash, size_t pos, size_t count)
 
 char	*get_join(char *stash, char *buffer)
 {
-	char	*new_string;
+	char		*new_string;
 	size_t		i;
 	size_t		j;
 
@@ -80,7 +81,7 @@ char	*get_join(char *stash, char *buffer)
 	if (!new_string)
 		return (free(buffer), NULL);
 	i = 0;
-	while (stash[i]) 
+	while (stash[i])
 	{
 		new_string[i] = stash[i];
 		i++;

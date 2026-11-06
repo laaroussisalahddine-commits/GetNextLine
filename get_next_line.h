@@ -13,9 +13,9 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1024
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -23,7 +23,7 @@
 
 int		get_search(char	*str, int c);
 char	*get_strchr(char *str, int c);
-size_t		get_strlen(char *str);
+size_t	get_strlen(char *str);
 char	*get_alloc(void);
 char	*get_join(char *stash, char *buffer);
 char	*read_file(char *stash, int fd);

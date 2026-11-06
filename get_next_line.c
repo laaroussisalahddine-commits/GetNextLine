@@ -12,13 +12,12 @@
 
 #include "get_next_line.h"
 
-
 char	*get_next_line(int fd)
 {
-	static char *stash;
+	static char	*stash;
 	char		*stock;
 	char		*line;
-	
+
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	stock = read_file(stash, fd);
@@ -30,7 +29,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	stash = stock;
-	line  = extract_line(stash);
+	line = extract_line(stash);
 	if (!line)
 	{
 		free(stash);
@@ -43,38 +42,38 @@ char	*get_next_line(int fd)
 
 char	*read_file(char *stash, int fd)
 {
-	char			*buffer;
-	ssize_t			byte;
+	char		*buffer;
+	ssize_t		byte;
 
 	byte = 1;
-	while(byte != 0)
+	while (byte != 0)
 	{
-		buffer = malloc(BUFFER_SIZE + (size_t)1); //search of why size_t cast;
+		buffer = malloc(BUFFER_SIZE + (size_t)1);
 		if (!buffer)
 			return (NULL);
 		byte = read(fd, buffer, BUFFER_SIZE);
 		if ((!stash && byte == 0) || byte == -1)
 		{
 			free(buffer);
-			return(NULL); // add free (stash);
+			return (free(stash), NULL);
 		}
 		buffer[byte] = '\0';
 		stash = get_join(stash, buffer);
 		if (get_search(stash, '\n'))
-			break;
+			break ;
 	}
 	return (stash);
 }
 
 char	*extract_line(char *stash)
 {
-	char	*line;
+	char		*line;
 	size_t		i;
 
 	if (!stash)
 		return (NULL);
 	i = 0;
-	while(stash[i] && stash[i] != '\n')
+	while (stash[i] && stash[i] != '\n')
 		i++;
 	if (stash[i] == '\n')
 		i++;
@@ -82,7 +81,7 @@ char	*extract_line(char *stash)
 	if (!line)
 		return (NULL);
 	i = 0;
-	while(stash[i] && stash[i] != '\n')
+	while (stash[i] && stash[i] != '\n')
 	{
 		line[i] = stash[i];
 		i++;
@@ -95,7 +94,7 @@ char	*extract_line(char *stash)
 
 char	*update_stash(char *stash, char **line)
 {
-	char	*new_stash;
+	char		*new_stash;
 	size_t		i;
 	size_t		j;
 
@@ -115,4 +114,3 @@ char	*update_stash(char *stash, char **line)
 	free(stash);
 	return (new_stash);
 }
-
