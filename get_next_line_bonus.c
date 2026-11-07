@@ -28,6 +28,28 @@ char	*get_next_line_bonus(int fd)
 	stash[fd] = update_stash_bonus(stash[fd], &line);
 	return (line);
 }
+char	*read_file_bonus(char *stash, int fd)
+{
+	char		*buffer;
+	ssize_t		byte;
+
+	byte = 1;
+	while (!get_search_bonus(stash, '\n') && byte != 0)
+	{
+		buffer = malloc((size_t)BUFFER_SIZE + 1);
+		if (!buffer)
+			return (free(stash), buffer);
+		byte = read(fd, buffer, BUFFER_SIZE);
+		if ((!stash && byte == 0) || byte == -1)
+		{
+			free(buffer);
+			return (free(stash), NULL);
+		}
+		buffer[byte] = 0;
+		stash = get_join_bonus(stash, buffer);
+	}
+	return (stash);
+}
 
 char	*update_stash_bonus(char *stash, char **line)
 {
@@ -75,26 +97,3 @@ char	*extract_line_bonus(char *stash)
 	return (line);
 }
 
-char	*read_file_bonus(char *stash, int fd)
-{
-	char		*buffer;
-	ssize_t		byte;
-
-	byte = 1;
-	while (byte != 0)
-	{
-		buffer = malloc((size_t)BUFFER_SIZE + 1);
-		if (!buffer)
-			return (free(stash), buffer);
-		byte = read(fd, buffer, BUFFER_SIZE);
-		if ((!stash && byte == 0) || byte == -1)
-		{
-			free(buffer);
-			return (free(stash), NULL);
-		}
-		stash = get_join_bonus(stash, buffer);
-		if (get_search_bonus(stash, '\n'))
-			break ;
-	}
-	return (stash);
-}

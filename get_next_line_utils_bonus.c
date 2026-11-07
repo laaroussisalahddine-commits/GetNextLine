@@ -69,8 +69,8 @@ char	*get_join_bonus(char *stash, char *buffer)
 	new_string = (char *)malloc(get_strlen_bonus(stash) + get_strlen_bonus(buffer) + 1);
 	if (!new_string)
 		return (free(buffer), NULL);
-	i = 0;
-	while (stash[i++])
+	i = -1;
+	while (stash[++i])
 		new_string[i] = stash[i];
 	j = -1;
 	while (buffer[++j])

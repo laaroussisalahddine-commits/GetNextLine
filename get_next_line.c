@@ -68,43 +68,43 @@ char	*read_file(char *stash, int fd)
 char	*extract_line(char *stash)
 {
 	char		*line;
-	size_t		i;
+	size_t		len_line;
 
 	if (!stash)
 		return (NULL);
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	if (stash[i] == '\n')
-		i++;
-	line = (char *)malloc(i + 1);
+	len_line = 0;
+	while (stash[len_line] && stash[len_line] != '\n')
+		len_line++;
+	if (stash[len_line] == '\n')
+		len_line++;
+	line = (char *)malloc(len_line + 1);
 	if (!line)
 		return (NULL);
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
+	len_line = 0;
+	while (stash[len_line] && stash[len_line] != '\n')
 	{
-		line[i] = stash[i];
-		i++;
+		line[len_line] = stash[len_line];
+		len_line++;
 	}
-	if (stash[i] == '\n')
-		line[i++] = '\n';
-	line[i] = 0;
+	if (stash[len_line] == '\n')
+		line[len_line++] = '\n';
+	line[len_line] = 0;
 	return (line);
 }
 
 char	*update_stash(char *stash, char **line)
 {
 	char		*new_stash;
-	size_t		i;
-	size_t		j;
+	size_t		len_line;
+	size_t		len_new_stash;
 
-	i = get_strlen(*line);
-	if (!stash[i])
+	len_line = get_strlen(*line);
+	if (!stash[len_line])
 		return (free(stash), NULL);
-	j = 0;
-	while (stash[i + j])
-		j++;
-	new_stash = copy_new_stash(stash, i, j);
+	len_new_stash = 0;
+	while (stash[len_line + len_new_stash])
+		len_new_stash++;
+	new_stash = copy_new_stash(stash, len_line, len_new_stash);
 	if (!new_stash)
 	{
 		free(*line);
