@@ -1,5 +1,5 @@
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 9999
@@ -24,6 +24,6 @@ char	*get_join_bonus(char *stash, char *buffer);
 char	*get_new_stash_bonus(char *stash, size_t start, size_t len);
 size_t	get_strlen_bonus(char *s);
 char	*get_alloc_bonus(void);
-int	get_search_bonus(char *s, int c);
+int		get_search_bonus(char *s, int c);
 
 #endif

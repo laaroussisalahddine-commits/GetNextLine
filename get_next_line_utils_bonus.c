@@ -36,6 +36,7 @@ size_t	get_strlen_bonus(char *s)
 		i++;
 	return (i);
 }
+
 char	*get_new_stash_bonus(char *stash, size_t start, size_t len)
 {
 	char	*new;
@@ -45,7 +46,7 @@ char	*get_new_stash_bonus(char *stash, size_t start, size_t len)
 	if (!new)
 		return (NULL);
 	i = 0;
-	while(stash[start])
+	while (stash[start])
 	{
 		new[i++] = stash[start];
 		start++;
@@ -66,9 +67,11 @@ char	*get_join_bonus(char *stash, char *buffer)
 		if (!stash)
 			return (free(buffer), NULL);
 	}
-	new_string = (char *)malloc(get_strlen_bonus(stash) + get_strlen_bonus(buffer) + 1);
+	i = get_strlen_bonus(stash);
+	j = get_strlen_bonus(buffer);
+	new_string = (char *)malloc(i + j + 1);
 	if (!new_string)
-		return (free(buffer), NULL);
+		return (free(buffer), free(stash), NULL);
 	i = -1;
 	while (stash[++i])
 		new_string[i] = stash[i];
@@ -76,5 +79,5 @@ char	*get_join_bonus(char *stash, char *buffer)
 	while (buffer[++j])
 		new_string[i++] = buffer[j];
 	new_string[i] = 0;
-	return(free(stash), free(buffer), new_string);
+	return (free(stash), free(buffer), new_string);
 }

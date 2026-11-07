@@ -23,8 +23,6 @@ char	*get_next_line(int fd)
 	stock = read_file(stash, fd);
 	if (!stock)
 	{
-		if (stash)
-			free(stash);
 		stash = NULL;
 		return (NULL);
 	}

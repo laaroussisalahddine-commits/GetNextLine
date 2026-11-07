@@ -79,7 +79,7 @@ char	*get_join(char *stash, char *buffer)
 	}
 	new_string = (char *)malloc(get_strlen(stash) + get_strlen(buffer) + 1);
 	if (!new_string)
-		return (free(buffer), NULL);
+		return (free(buffer), free(stash), NULL);
 	i = 0;
 	while (stash[i])
 	{
