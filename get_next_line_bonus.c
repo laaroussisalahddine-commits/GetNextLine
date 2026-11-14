@@ -6,7 +6,7 @@
 /*   By: slaarous <slaarous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/09 20:50:37 by slaarous          #+#    #+#             */
-/*   Updated: 2026/11/09 20:50:38 by slaarous         ###   ########.fr       */
+/*   Updated: 2026/11/14 21:10:32 by slaarous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ char	*get_next_line_bonus(int fd)
 	char		*stock;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0
-		|| !(fd >= 0 && fd < MAX_INDEX))
+	if (fd < 0 || fd >= MAX_INDEX || BUFFER_SIZE <= 0)
 		return (NULL);
 	stock = read_file_bonus(stash[fd], fd);
 	if (!stock)
@@ -58,6 +57,8 @@ char	*read_file_bonus(char *stash, int fd)
 		}
 		buffer[byte] = 0;
 		stash = get_join_bonus(stash, buffer);
+		if (!stash)
+			return (NULL);
 	}
 	return (stash);
 }

@@ -6,7 +6,7 @@
 /*   By: slaarous <slaarous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/09 20:50:59 by slaarous          #+#    #+#             */
-/*   Updated: 2026/11/09 20:51:00 by slaarous         ###   ########.fr       */
+/*   Updated: 2026/11/14 21:09:24 by slaarous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 /*----main function----*/
 char	*get_next_line_bonus(int fd);

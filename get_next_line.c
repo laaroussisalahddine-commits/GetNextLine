@@ -6,7 +6,7 @@
 /*   By: slaarous <slaarous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 19:35:31 by slaarous          #+#    #+#             */
-/*   Updated: 2026/11/13 20:58:13 by slaarous         ###   ########.fr       */
+/*   Updated: 2026/11/14 21:05:21 by slaarous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char	*read_file(char *stash, int fd)
 		}
 		buffer[byte] = '\0';
 		stash = get_join(stash, buffer);
+		if (!stash)
+			return (NULL);
 	}
 	return (stash);
 }

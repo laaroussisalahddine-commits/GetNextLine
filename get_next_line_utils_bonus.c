@@ -6,7 +6,7 @@
 /*   By: slaarous <slaarous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/09 20:50:47 by slaarous          #+#    #+#             */
-/*   Updated: 2026/11/09 20:50:48 by slaarous         ###   ########.fr       */
+/*   Updated: 2026/11/14 21:13:50 by slaarous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ char	*get_join_bonus(char *stash, char *buffer)
 	new_string = (char *)malloc(i + j + 1);
 	if (!new_string)
 		return (free(buffer), free(stash), NULL);
-	i = -1;
-	while (stash[++i])
-		new_string[i] = stash[i];
-	j = -1;
-	while (buffer[++j])
-		new_string[i++] = buffer[j];
+	i = 0;
+	while (stash[i])
+		new_string[i] = stash[i++];
+	j = 0;
+	while (buffer[j])
+		new_string[i++] = buffer[j++];
 	new_string[i] = 0;
 	return (free(stash), free(buffer), new_string);
 }
