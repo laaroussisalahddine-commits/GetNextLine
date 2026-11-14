@@ -6,7 +6,7 @@
 /*   By: slaarous <slaarous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 19:35:31 by slaarous          #+#    #+#             */
-/*   Updated: 2026/11/13 12:04:51 by slaarous         ###   ########.fr       */
+/*   Updated: 2026/11/13 20:58:13 by slaarous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ char	*read_file(char *stash, int fd)
 	ssize_t		byte;
 
 	byte = 1;
-	while (byte != 0)
+	while (!get_search(stash, '\n') && byte != 0)
 	{
 		buffer = malloc(BUFFER_SIZE + (size_t)1);
 		if (!buffer)
-			return (free(sash), NULL);
+			return (free(stash), NULL);
 		byte = read(fd, buffer, BUFFER_SIZE);
 		if ((!stash && byte == 0) || byte == -1)
 		{
@@ -57,8 +57,6 @@ char	*read_file(char *stash, int fd)
 		}
 		buffer[byte] = '\0';
 		stash = get_join(stash, buffer);
-		if (get_search(stash, '\n'))
-			break ;
 	}
 	return (stash);
 }
