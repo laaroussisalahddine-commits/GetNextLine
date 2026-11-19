@@ -116,8 +116,6 @@ Here is an example for the mandatory version. Save it as `main.c`:
 #include "get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 int main(int argc, char **argv)
 {
@@ -131,7 +129,7 @@ int main(int argc, char **argv)
         return (perror("open"), 1);
     while ((line = get_next_line(fd)) != NULL)
     {
-        fputs(line, stdout);
+        printf("%s", line);
         free(line);
     }
     close(fd);

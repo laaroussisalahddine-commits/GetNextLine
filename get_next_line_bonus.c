@@ -6,13 +6,13 @@
 /*   By: slaarous <slaarous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/09 20:50:37 by slaarous          #+#    #+#             */
-/*   Updated: 2026/11/14 21:10:32 by slaarous         ###   ########.fr       */
+/*   Updated: 2026/11/17 14:11:22 by slaarous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*get_next_line_bonus(int fd)
+char	*get_next_line(int fd)
 {
 	static char	*stash[MAX_INDEX];
 	char		*stock;
